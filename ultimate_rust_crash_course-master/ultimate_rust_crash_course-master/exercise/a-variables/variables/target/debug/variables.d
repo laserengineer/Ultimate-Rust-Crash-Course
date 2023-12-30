@@ -1,0 +1,1 @@
+C:\Projects\Ultimate-Rust-Crash-Course-1\ultimate_rust_crash_course-master\ultimate_rust_crash_course-master\exercise\a-variables\variables\target\debug\variables.exe: C:\Projects\Ultimate-Rust-Crash-Course-1\ultimate_rust_crash_course-master\ultimate_rust_crash_course-master\exercise\a-variables\variables\src\main.rs

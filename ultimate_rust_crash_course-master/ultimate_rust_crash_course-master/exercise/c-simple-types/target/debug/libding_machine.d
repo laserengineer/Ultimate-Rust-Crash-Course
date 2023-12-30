@@ -1,0 +1,1 @@
+C:\Projects\Ultimate-Rust-Crash-Course-1\ultimate_rust_crash_course-master\ultimate_rust_crash_course-master\exercise\c-simple-types\target\debug\libding_machine.rlib: C:\Projects\Ultimate-Rust-Crash-Course-1\ultimate_rust_crash_course-master\ultimate_rust_crash_course-master\exercise\c-simple-types\src\lib.rs
