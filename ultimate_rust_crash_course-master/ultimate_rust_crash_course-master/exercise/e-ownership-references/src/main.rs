@@ -24,32 +24,55 @@ fn main() {
     // the String if it doesn't already end with "s". Then uncomment and run the code below with
     // `cargo run apple`.  Hint: use `.push_str("s")` on the mutable String reference to add an "s".
     //
-    //change(&mut arg);
-    //println!("I have many {}", arg);
+    change(&mut arg);
+    println!("I have many {}", arg);
 
     // 3. Write a function `eat` that accepts ownership of (consumes) a String and returns a bool
     // indicating whether or not the String both starts with a "b" AND contains an "a".
     // Hint 1: use `.starts_with("b")` and `.contains("a")`
     // Hint 2: `&&` is the boolean "AND" operator
     //
-    //if eat(arg) {
-    //    println!("Might be bananas");
-    //} else {
-    //    println!("Not bananas");
-    //}
+    if eat(arg) {
+       println!("Might be bananas");
+    } else {
+       println!("Not bananas");
+    }
 
     // Try running this program with "boat", "banana", and "grapes" as the arguments :-)
 
     // Challenge: Write a function "add" that takes *references* to two integer arguments,
     // dereferences them and adds them together, and returns the result.
     //
-    // println!("1 + 2 = {}, even via references", add(&1, &2));
+    println!("1 + 2 = {}, even via references", add(&1, &6));
 }
 
 fn inspect(arg: &String){
     if arg.ends_with("s"){
-        println!("{} is plural", s);
+        println!("{} is plural", arg);
     } else {
-        println!("{} is singular", s);
+        println!("{} is singular", arg);
     }
+}
+
+fn change(arg: &mut String){
+    // 2. Write a function `change` that takes a *mutable* reference to a String and adds an "s" to
+    // the String if it doesn't already end with "s". Then uncomment and run the code below with
+    // `cargo run apple`.  Hint: use `.push_str("s")` on the mutable String reference to add an "s".
+    //
+    if !arg.ends_with("s"){
+        arg.push_str("s") // Add "s" to the string if it doesn't already end with "s".
+    } 
+}
+
+fn eat(s: String) -> bool {
+    // 3. Write a function `eat` that accepts ownership of (consumes) a String and returns a bool
+    // indicating whether or not the String both starts with a "b" AND contains an "a".
+    // Hint 1: use `.starts_with("b")` and `.contains("a")`
+    // Hint 2: `&&` is the boolean "AND" operator
+    //
+    s.starts_with("b") && s.contains("a")
+}
+
+fn add(a:&i32, b:&i32) -> i32 {
+    *a + *b
 }
