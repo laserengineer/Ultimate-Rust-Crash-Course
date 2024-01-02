@@ -25,7 +25,7 @@ impl Shot {
         // - return 0 points if `self` is a Miss
         match self {
             Shot::Bullseye => 5,
-            Shot::Hit(x) if x < 3.0 => 2,
+            Shot::Hit(x) if x < 3.0 => 2,     
             Shot::Hit(x) => 1,
             Shot::Miss => 0,
         }
@@ -51,13 +51,18 @@ fn main() {
         coord.print_description();
 
         // Determine the type of shot based on the distance from the center
-        let distance = coord.distance_from_center();
-        let shot = if distance < 1.0{
-            Shot::Bullseye
-        } else if distance <= 5.0 {
-            Shot::Hit(distance)
-        } else {
-            Shot::Miss
+        // let distance = coord.distance_from_center();
+        // let shot = if distance < 1.0{
+        //     Shot::Bullseye
+        // } else if distance <= 5.0 {
+        //     Shot::Hit(distance)
+        // } else {
+        //     Shot::Miss
+        // };
+        let shot = match coord.distance_from_center() {
+            x if x < 1.0 =>Shot::Bullseye,
+            x if x > 1.0 =>Shot::Hit(x),
+            _ => Shot::Miss,
         };
 
         // Append the shot to the shots vector
