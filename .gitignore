@@ -117,3 +117,4 @@ ultimate_rust_crash_course-master/ultimate_rust_crash_course-master/exercise/g-c
 .gitignore/incremental/g_collections_enums-30g58tu72w19c/s-gs2qovc09g-xw0q2y-bap4t5uev44dw4wsdp11lvkg/work-products.bin
 ultimate_rust_crash_course-master/ultimate_rust_crash_course-master/exercise/g-collections-enums/target/
 ultimate_rust_crash_course-master/ultimate_rust_crash_course-master/exercise/h-closures-threads/target/
+/invaders/target/
