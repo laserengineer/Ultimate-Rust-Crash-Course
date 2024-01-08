@@ -1,5 +1,4 @@
 use crate::{NUM_COLS, NUM_ROWS};
-
 pub type Frame = Vec<Vec<& 'static str>>;
 
 pub fn new_frame() -> Frame {
@@ -15,5 +14,6 @@ pub fn new_frame() -> Frame {
 }
 
 pub trait Drawable {
+   // Method to draw the object on a given frame
     fn draw(&self, frame: &mut Frame);
 }
