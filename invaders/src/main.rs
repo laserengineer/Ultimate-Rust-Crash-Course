@@ -5,7 +5,7 @@ use crossterm::terminal::{EnterAlternateScreen, LeaveAlternateScreen};
 use crossterm::{event, terminal, ExecutableCommand};
 use invaders::frame::{new_frame, Drawable};
 // use invaders::invaders::Invaders;
-// use invaders::player::Player;
+use invaders::player::Player;
 use invaders::{frame, render};
 use rusty_audio::Audio;
 use std::error::Error;
@@ -55,25 +55,40 @@ fn main() -> Result<(), Box<dyn Error>> {
 
 
     // GameLoop
+    let mut player = Player::new();
+    let mut instant = Instant::now();
     'gameloop: loop {
         // Per-frame init
-        let curr_frame = new_frame();
-
+        let delta = instant.elapsed();
+        instant = Instant::now();
+        let mut curr_frame = new_frame();
         
         // Input events
         while event::poll(Duration::default())?{
             if let Event::Key(key_event) = event:: read()? {
                 match key_event.code {
-                    KeyCode::Esc | KeyCode::Char('q') =>{
+                    KeyCode::Left => player.move_left(),
+                    KeyCode::Right => player.move_right(),
+                    KeyCode::Char(' ') | KeyCode :: Enter => {
+                        if player.shoot() {
+                            audio.play("pew");
+                        }
+                    }
+                    KeyCode::Esc | KeyCode::Char('q') => { 
                         audio.play("loose");
                         break 'gameloop;
-                    }
+                    },   
                     _ =>{}
                 }
             }
         }
 
+
+        // Updates
+        player.update(delta);
+
         // Draw & render
+        player.draw(&mut curr_frame);
         let _ = render_tx.send(curr_frame);
         thread::sleep(Duration::from_millis(1)); 
     }
