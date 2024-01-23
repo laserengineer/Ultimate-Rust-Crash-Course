@@ -52,8 +52,8 @@ fn main() {
         coord.print_description();
 
         let shot = match coord.distance_from_center() {
-            x if x < 1.0 => Shot::Bullseye,
-            x if x > 1.0 => Shot::Hit(x),
+            y if y < 1.0 => Shot::Bullseye,
+            y if y >= 1.0 && y <= 5.0 => Shot::Hit(y),
             _ => Shot::Miss,
         };
         shots.push(shot);
