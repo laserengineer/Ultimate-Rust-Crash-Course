@@ -25,9 +25,8 @@ impl Shot {
         // - return 0 points if `self` is a Miss
         match self {
             Shot::Bullseye => 5,
-            Shot::Hit(x) if x < 3.0 => 2,
-            Shot::Hit(x) if x >= 3.0 => 1,
-            Shot::Hit(_) => 0,
+            Shot::Hit(x) if x < 3.0 => 2,     
+            Shot::Hit(x) => 1,
             Shot::Miss => 0,
         }
     }
@@ -46,25 +45,37 @@ fn main() {
     //      - Less than 1.0 -- `Shot::Bullseye`
     //      - Between 1.0 and 5.0 -- `Shot::Hit(value)`
     //      - Greater than 5.0 -- `Shot::Miss`
-
     for coord in arrow_coords {
-        // Print the description of the coordinate 
+        
+        // Print the description of the coordinate
         coord.print_description();
 
+        // Determine the type of shot based on the distance from the center
+        // let distance = coord.distance_from_center();
+        // let shot = if distance < 1.0{
+        //     Shot::Bullseye
+        // } else if distance <= 5.0 {
+        //     Shot::Hit(distance)
+        // } else {
+        //     Shot::Miss
+        // };
         let shot = match coord.distance_from_center() {
-            x if x < 1.0 => Shot::Bullseye,
-            x if x > 1.0 => Shot::Hit(x),
+            x if x < 1.0 =>Shot::Bullseye,
+            x if x > 1.0 =>Shot::Hit(x),
             _ => Shot::Miss,
         };
+
+        // Append the shot to the shots vector
         shots.push(shot);
     }
 
-
     let mut total = 0;
     // 3. Finally, loop through each shot in shots and add its points to total
-    for shot in shots{
+    for shot in shots {
         total += shot.points();
     }
+
+
     println!("Final point total is: {}", total);
 }
 
